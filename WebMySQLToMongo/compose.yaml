@@ -1,0 +1,74 @@
+# Comments are provided throughout this file to help you get started.
+# If you need more help, visit the Docker compose reference guide at
+# https://docs.docker.com/compose/compose-file/
+
+# Here the instructions define your application as a service called "server".
+# This service is built from the Dockerfile in the current directory.
+# You can add other services your application may depend on here, such as a
+# database or a cache. For examples, see the Awesome Compose repository:
+# https://github.com/docker/awesome-compose
+version: '3' 
+services:
+  server:
+    build:
+      context: .
+      target: final
+    ports:
+      - 8080:80
+  #   depends_on:
+  #     database:
+  #       condition: service_healthy
+  # database:
+  #   image: fjardim/mysql
+  #   container_name: database
+  #   hostname: database
+  #   ports:
+  #       - "33061:3306"
+  #   deploy:
+  #     resources:
+  #       limits:
+  #         memory: 500m
+  #   command: mysqld --innodb-flush-method=o_dsync --innodb-use-native-aio=off --init-file /data/application/init.sql
+  #   volumes:
+  #       - ./data/mysql/data:/var/lib/mysql
+  #       - ./data/init.sql:/data/application/init.sql
+  #   environment:
+  #       mysql_root_user: root
+  #       mysql_root_password: secret
+  #       mysql_database: hue
+  #       mysql_user: root
+  #       mysql_password: secret
+
+# The commented out section below is an example of how to define a PostgreSQL
+# database that your application can use. `depends_on` tells Docker Compose to
+# start the database before your application. The `db-data` volume persists the
+# database data between container restarts. The `db-password` secret is used
+# to set the database password. You must create `db/password.txt` and add
+# a password of your choosing to it before running `docker compose up`.
+#     depends_on:
+#       db:
+#         condition: service_healthy
+#   db:
+#     image: postgres
+#     restart: always
+#     user: postgres
+#     secrets:
+#       - db-password
+#     volumes:
+#       - db-data:/var/lib/postgresql/data
+#     environment:
+#       - POSTGRES_DB=example
+#       - POSTGRES_PASSWORD_FILE=/run/secrets/db-password
+#     expose:
+#       - 5432
+#     healthcheck:
+#       test: [ "CMD", "pg_isready" ]
+#       interval: 10s
+#       timeout: 5s
+#       retries: 5
+# volumes:
+#   db-data:
+# secrets:
+#   db-password:
+#     file: db/password.txt
+

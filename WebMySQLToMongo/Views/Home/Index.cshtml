@@ -1,0 +1,49 @@
+﻿@using WebMySQLToMongo.Models;
+@model MySQLToMongo;
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@*<div class="text-center">
+        @Html.Label("Ip Sever MySQL");
+        @Html.TextBox("MySQLServer)
+        @Html.Label("Ip Sever MySQL")
+    @Html.TextBox("MySQLServer)
+    @Html.Label("Ip Sever MySQL")
+    @Html.TextBox("MySQLServer)
+    </div>*@
+
+@using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @class = "text-center" }))
+{
+    @Html.Label("Servidor")
+    <br />
+    @Html.TextBoxFor(it => it.MyMongoServer)
+    <br />
+    @Html.Label("Usuáro:")
+    <br />
+    @Html.TextBoxFor(it => it.MyMongoUser)
+    <br />
+    @Html.Label("Senha:")
+    <br />
+    @Html.PasswordFor(it => it.MySQLPassword)
+    <br />
+
+    <br />
+    <br />
+    <input type="button" value="Converter" onclick="GenerateMongo()" />
+}
+
+<script type="text/javascript">
+    window.onload = function () {
+        //window.alert("Carregou");
+    };
+
+    function GenerateMongo() {
+        $.ajax({
+            method: "GET",
+            url: "@Url.Action("ConvertMySQLToMongo", "Home")"
+        }).done(function (response) {
+            alert(response);
+        });
+    }
+</script>
