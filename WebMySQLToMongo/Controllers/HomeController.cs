@@ -83,6 +83,7 @@ namespace WebMySQLToMongo.Controllers
 
             return Json(JsonConvert.SerializeObject(bitCoins));
             //teste
+            //teste 3
             //return Json($"Quantidade: {bitCoins.Count()}");
         }
     }
