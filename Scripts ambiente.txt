@@ -1,0 +1,2 @@
+mkdir /tmp/scripts
+docker container cp "C:\Users\bruni\OneDrive\Bruno\Pessoal\Educação\FIAP\Data Architecture, integration and ingestion\Trabalho\script_teste.sql" MySQL:/tmp/scripts
